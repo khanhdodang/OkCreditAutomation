@@ -93,4 +93,7 @@ public class CustomerPage_OR extends desiredCapabilities{
 	
 	@FindBy(xpath = "//*/android.widget.LinearLayout/android.view.ViewGroup/android.widget.ImageButton")
 	public static WebElement NavigateBack;
+	
+	@FindBy(id = "in.okcredit.merchant:id/total_amount_container")
+	public static WebElement TransactionDetails;
 }

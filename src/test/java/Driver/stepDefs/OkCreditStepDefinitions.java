@@ -2,13 +2,17 @@ package Driver.stepDefs;
 
 import java.net.MalformedURLException;
 
+import javax.security.auth.login.AccountException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import Driver.PropertyData;
 import Driver.desiredCapabilities;
+import ObjectRepository.AccountPage_OR;
 import ObjectRepository.CustomerPage_OR;
+import ObjectRepository.HamburgerMenu_OR;
 import ObjectRepository.HomePage_OR;
 import ObjectRepository.LandingPage_OR;
 import PageObjects.CommonMethodsFunctions;
@@ -77,10 +81,17 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 		}
 		else if(Page.equals("Customer")){
 
-			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.CustomerName)).isDisplayed();
-			String CustomerName = CustomerPage_OR.CustomerName.getText();
-			System.out.println("The New Customer here is :" + CustomerName);
-			Assert.assertEquals(CustomerName, customerName);
+			wait.until(ExpectedConditions.visibilityOf(AccountPage_OR.Customers)).isDisplayed();
+			String CustomerCount = CustomerPage_OR.CustomerName.getText();
+			System.out.println("The Noumber of Customer for the user here is :" + CustomerCount);
+			Assert.assertEquals(CustomerCount, customerName);
+			
+		}
+		else if(Page.equals("Account")){
+
+			wait.until(ExpectedConditions.visibilityOf(AccountPage_OR.CustomerCOunt)).isDisplayed();
+			String CustomerCount = AccountPage_OR.CustomerCOunt.getText();
+			System.out.println("The New Customer here is :" + CustomerCount);
 			
 		}
 		
@@ -146,18 +157,32 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 		else if(Button.equals("Give Credit")) {
 			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.GiveCredit)).isDisplayed();
 			CustomerPage_OR.GiveCredit.click();
-			CustomerPage_OR.GiveCredit.sendKeys(data.creditAmount);
-			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.DateText)).isDisplayed();
+			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.NumberZero)).isDisplayed();
 		}
 		else if(Button.equals("Accept Payment")) {
 			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.AcceptPayment)).isDisplayed();
 			CustomerPage_OR.AcceptPayment.click();
-			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.AcceptPaymentBtn)).isDisplayed();
+			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.AddCreditButton)).isDisplayed();
 		}
 		else if(Button.equals("HamBurger Menu")) {
-			wait.until(ExpectedConditions.elementToBeClickable(HomePage_OR.AccountMenu)).isDisplayed();
-			CustomerPage_OR.AcceptPayment.click();
-			wait.until(ExpectedConditions.elementToBeClickable(CustomerPage_OR.AcceptPaymentBtn)).isDisplayed();
+			wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByAccessibilityId("Open"))).isDisplayed();
+			driver.findElementByAccessibilityId("Open").click();
+			wait.until(ExpectedConditions.elementToBeClickable(HamburgerMenu_OR.AccountHolderName)).isDisplayed();
+		}
+		else if(Button.equals("Account")) {
+			wait.until(ExpectedConditions.elementToBeClickable(HamburgerMenu_OR.AccountMenu)).isDisplayed();
+			HamburgerMenu_OR.AccountMenu.click();
+			wait.until(ExpectedConditions.elementToBeClickable(AccountPage_OR.CustomerCOunt)).isDisplayed();
+		}
+		else if(Button.equals("Account Statement")) {
+			wait.until(ExpectedConditions.elementToBeClickable(AccountPage_OR.AccountStatment)).isDisplayed();
+			AccountPage_OR.AccountStatment.click();
+			wait.until(ExpectedConditions.elementToBeClickable(AccountPage_OR.AccountStatementHeader)).isDisplayed();
+		}
+		else if(Button.equals("Send OTP")) {
+			wait.until(ExpectedConditions.elementToBeClickable(LandingPage_OR.SendOTP)).isDisplayed();
+			LandingPage_OR.SendOTP.click();
+			wait.until(ExpectedConditions.elementToBeClickable(LandingPage_OR.AutoVerifyOtp)).isDisplayed();
 		}
 	}
 	
@@ -191,18 +216,25 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 			HomePage_OR.PasswordOkButton.click();
 		}
 		if(Number.equals("Credit Amount")) {
-			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AddCreditButton)).isDisplayed();
-			Assert.assertTrue(CustomerPage_OR.AddCreditButton.isDisplayed());
-			CustomerPage_OR.AddCreditButton.sendKeys(data.creditAmount);
-			wait.until(ExpectedConditions.elementToBeClickable(HomePage_OR.PasswordOkButton)).isDisplayed();
-			HomePage_OR.PasswordOkButton.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.NumberFive)).isDisplayed();
+			CustomerPage_OR.NumberFive.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.NumberZero)).isDisplayed();
+			CustomerPage_OR.NumberZero.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.NumberZero)).isDisplayed();
+			CustomerPage_OR.NumberZero.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AttachmentOk)).isDisplayed();
 		}
 		if(Number.equals("Payment")) {
-			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AcceptPaymentBtn)).isDisplayed();
-			Assert.assertTrue(CustomerPage_OR.AcceptPaymentBtn.isDisplayed());
-			CustomerPage_OR.AcceptPaymentBtn.sendKeys(data.payment);
-			wait.until(ExpectedConditions.elementToBeClickable(HomePage_OR.PasswordOkButton)).isDisplayed();
-			HomePage_OR.PasswordOkButton.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AddCreditButton)).isDisplayed();
+			Assert.assertTrue(CustomerPage_OR.AddCreditButton.isDisplayed());
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.NumberFive)).isDisplayed();
+			CustomerPage_OR.NumberFive.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.NumberZero)).isDisplayed();
+			CustomerPage_OR.NumberZero.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.NumberZero)).isDisplayed();
+			CustomerPage_OR.NumberZero.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AttachmentOk)).isDisplayed();
+			
 		}
 	}
 	@Then("^Verify the \"([^\"]*)\" button$")
@@ -228,7 +260,7 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 	@And("^Navigate to \"([^\"]*)\" Page$")
 	public void navigate_to_customer_page(String page) {
 
-		if(page.equals("Cutomer")) {
+		if(page.equals("Customer")) {
 			
 			wait.until(ExpectedConditions.visibilityOf(HomePage_OR.SearchCustomer)).isDisplayed();
 			HomePage_OR.SearchCustomer.sendKeys(customerName);
@@ -251,11 +283,17 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 		if(obj.equals("Attachments")) {
 			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.CameraButton)).isDisplayed();
 			CustomerPage_OR.CameraButton.click();
-			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AllowAccess)).isDisplayed();
-			CustomerPage_OR.AllowAccess.click();
-			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.PermissionAllow)).isDisplayed();
-			CustomerPage_OR.PermissionAllow.click();
-			CustomerPage_OR.PermissionAllow.click();
+			try {
+				wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AllowAccess)).isDisplayed();
+				CustomerPage_OR.AllowAccess.click();
+				wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.PermissionAllow)).isDisplayed();
+				CustomerPage_OR.PermissionAllow.click();
+				CustomerPage_OR.PermissionAllow.click();
+			}
+			catch(Exception E) {
+				System.out.println("Entering Attachments Second time");
+			}
+			
 			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.CameraMenu)).isDisplayed();
 			CustomerPage_OR.GalleryMenu.click();
 			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.GalleryThumOne)).isDisplayed();
@@ -264,7 +302,6 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 			Assert.assertTrue(CustomerPage_OR.PhotoAdded.isDisplayed());
 			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AttachmentOk)).isDisplayed();
 			CustomerPage_OR.AttachmentOk.click();
-			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.DateText)).isDisplayed();
 		}
 		
 	}
@@ -276,10 +313,18 @@ public class OkCreditStepDefinitions extends desiredCapabilities{
 
 		}
 		else if(Details.equals("Transaction Page")) {
-			
+//			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.AttachmentOk)).isDisplayed();
+//			CustomerPage_OR.AttachmentOk.click();
+			wait.until(ExpectedConditions.visibilityOf(CustomerPage_OR.TransactionDetails)).isDisplayed();
+			Assert.assertTrue(CustomerPage_OR.TransactionDetails.isDisplayed());
 		}
 		else if(Details.equals("Account Page")) {
-			
+			wait.until(ExpectedConditions.visibilityOf(AccountPage_OR.Download)).isDisplayed();
+			Assert.assertTrue(AccountPage_OR.Download.isDisplayed());
+		}
+		else if(Details.equals("HomePage")) {
+			wait.until(ExpectedConditions.visibilityOf(HomePage_OR.CustomerList)).isDisplayed();
+			Assert.assertTrue(HomePage_OR.CustomerList.isDisplayed());
 		}
 		
 	}

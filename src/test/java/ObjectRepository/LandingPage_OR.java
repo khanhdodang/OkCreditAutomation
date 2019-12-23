@@ -85,4 +85,21 @@ public class LandingPage_OR extends desiredCapabilities{
 	@FindBy(id ="com.android.packageinstaller:id/permission_allow_button")
 	public static WebElement Allow;
 	
+	@FindBy(id ="in.okcredit.merchant:id/loading_autoread")
+	public static WebElement AutoVerifyingOtp;
+	
+	@FindBy(id ="in.okcredit.merchant:id/otp")
+	public static WebElement OtpTextBox;
+	
+	@FindBy(id ="com.google.android.apps.messaging:id/lockup")
+	public static WebElement Messages;
+	
+	@FindBy(id ="com.google.android.apps.messaging:id/conversation_icon")
+	public static WebElement ConversationHeader;
+	
+	@FindBy(id ="com.google.android.apps.messaging:id/conversation_name")
+	public static WebElement ConversationName;
+	
+	@FindBy(id ="com.google.android.apps.messaging:id/message_text")
+	public static WebElement MessageText;
 }

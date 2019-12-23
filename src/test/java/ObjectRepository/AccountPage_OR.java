@@ -12,7 +12,7 @@ public class AccountPage_OR extends desiredCapabilities{
 	public static WebElement Customers;
 	
 	@FindBy(id ="in.okcredit.merchant:id/customerCount")
-	public static WebElement CuctomerCOunt;
+	public static WebElement CustomerCOunt;
 	
 	@FindBy(id ="in.okcredit.merchant:id/balanceLabel")
 	public static WebElement Advance;
@@ -47,6 +47,12 @@ public class AccountPage_OR extends desiredCapabilities{
 	
 	@FindBy(id ="in.okcredit.merchant:id/material_drawer_account_header_email")
 	public static WebElement AccountHeaderEmail;
+	
+	@FindBy(id ="in.okcredit.merchant:id/accountSummaryIcon")
+	public static WebElement AccountStatment;
+	
+	@FindBy(id ="in.okcredit.merchant:id/date_container")
+	public static WebElement AccountDate;
 	
 	
 }

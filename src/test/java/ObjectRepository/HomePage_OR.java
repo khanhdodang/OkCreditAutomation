@@ -56,4 +56,10 @@ public class HomePage_OR extends desiredCapabilities{
 	@FindBy(id = "in.okcredit.merchant:id/lastPayment")
 	public static WebElement AddedOn;
 	
+	@FindBy(id = "Open")
+	public static WebElement HemburgerMenu;
+	
+	@FindBy(id = "in.okcredit.merchant:id/customerList")
+	public static WebElement CustomerList;
+	
 }

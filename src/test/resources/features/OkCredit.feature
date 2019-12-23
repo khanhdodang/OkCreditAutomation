@@ -21,8 +21,8 @@ Feature: Test on Add Transaction Flow in  OkCredit App
    	And User clicks on "OK" 
   	Then Verify the "Home" Page
   	
-   	@Login 
-  Scenario: Add Customer to the User
+   #	@Login 
+  #Scenario: Add Customer to the User
   #	When User is in "Home" Page
   #	And User clicks on "Add Customer" 
   #	And User enters the "Customer Name" 
@@ -31,39 +31,38 @@ Feature: Test on Add Transaction Flow in  OkCredit App
   #	
   #Scenario: Add Transaction to the Customer
   #	When User is in "Home" Page
-  #	And Navigate to "Cutomer" Page
+  #	And Navigate to "Customer" Page
   #	And User clicks on "Give Credit" 
   #	And User enters the "Credit Amount" 
   #	And User adds "Attachments"
   #	And Navigate to "Home" Page
   #	Then Verify Credit Details in "HomePage" 
-  #	And Navigate to "Cutomer" Page
+  #	And Navigate to "Customer" Page
   #	And User clicks on "Accept Payment" 
   #	And User enters the "Payment" 
   #	And User adds "Attachments" 
-  #	Then Verify Credit Details in "Transaction Page"
+  #	Then Verify Credit Details in "Transaction Page" 
   #	And Navigate to "Home" Page
   #	Then Verify Credit Details in "HomePage" 
-  #	
-  #	
+  	
  	Scenario: Verify the Transaction details in Account Page
   	When User is in "Home" Page
   	And User clicks on "HamBurger Menu" 
-  	And User clicks on "Account"
+  	And User clicks on "Account" 
   	Then Verify the "Account" Page
-  	And User clicks on "Account Statement"
+  	And User clicks on "Account Statement" 
   	Then Verify Credit Details in "Account Page" 
   	
   	############# This Scenario Has to be Executed only once ##########
   	
-  	@SignUp
-  Scenario: Verify OTP send to Mobile and Enter it in Login
-   	Then Verify "OTP" Page
-   	And User clicks on "Send OTP"
-   	And Verify the "Verify MObile" Page
-   	And User enters the "OTP"
-   	Then Verify the "Shop Name" Page
-   	And User enters the "Shop Name"
+  #	@SignUp
+  #Scenario: Verify OTP send to Mobile and Enter it in Login
+   #	Then Verify "OTP" Page
+   #	And User clicks on "Send OTP" 
+   #	And Verify the "Verify MObile" Page
+   #	And User enters the "OTP"
+   #	Then Verify the "Shop Name" Page
+   #	And User enters the "Shop Name"
   	
   	
   	############# Keywords Summary ####################################SSS
