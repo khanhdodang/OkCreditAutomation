@@ -1,3 +1,5 @@
+Android Automation - OkCredit
+
 Appium-cucumber-java-maven
 =================
 
@@ -14,48 +16,66 @@ Documentation
 * [Installation](https://github.com/selenium-cucumber/selenium-cucumber-java/blob/master/doc/installation.md)
 * [Predefined steps](https://github.com/selenium-cucumber/selenium-cucumber-java/blob/master/doc/canned_steps.md)
 
-Download a Framework
+Download Framework
 --------------
-* Maven - https://github.com/selenium-cucumber/selenium-cucumber-java-maven-example
+* Maven - https://github.com/okcredit/Android_Automation_BDD
 
 Framework Architecture
 --------------
-	Project-Name
+	Android_Automation_BDD
 		|
-		|_src/main/java
-		|	|_appUnderTest
-		|	|	|_calc.apk
-		|	|	|...
-		|	|_browserConfigs
-		|	|	|_saucelab_windows_chrome.properties
-		|	|	|_browserstack_windows_chrome.properties
-		|	|	|...
-		|	|_platformConfigs
-		|		|_saucelab.properties
-		|		|_browserstack.properties
-		|		|...
-		|_src/main/resources
 		|_src/test/java
-		|	|_env
-		|	|	|_DriverUtil.java
-		|	|	|_Hooks.java
-		|	|	|_RunCukeTest.java
-		|	|_userStepDefinitions
-		|	|	|_loginSteps.java
-		|	|	|_signUpSteps.java
+		|	|_API
+		|	|	|_EndPoints.java
+		|	|	|...
+		|	|_Driver
+		|	|	|_BaseTest.java
+		|	|	|_DesiredCapability.java
+		|	|	|_PropertyData.java
+		|	|	|_Runner.java
+		|	|	|...
+		|	|_Driver.stepDefs
+		|	|	|_APISetpDefinitions.java
+		|	|	|_LoginAndRegistrationFlowStepDefinitions.java
+		|	|	|...
+		|	|_ObjectRepository
+		|	|	|_HomePage_OR.java
+		|	|	|_TransactionPage_OR.java
+		|	|	|...
+		|	|_PageObjects
+		|	|	|_CommonMethodsFunctions.java
+		|	|	|_Random.java
+		|	|	|...
+		|	|_Utility
+		|	|	|_ReadProperties.java
+		|	|	|_SetProperties.java
 		|	|	|...
 		|_src/test/resources
 		|	|_features
-		|	|	|_login.feature
-		|	|	|_signUp.feature
-		
+		|	|	|_001_Sanity.feature
+		|	|	|_LoginAndRegistrationFlow.feature
+		|	|	|...
+		|	|_PropertyFiles
+		|	|	|_appConfig.properties
+		|	|	|_Configuration.properties
+		|	|	|...
+		|	|_log4j.properties
+		|	|	|...
+		|_src/main/java
+		|	|_appUnderTest
+		|	|	|_OkCredit.apk
+		|	|	|...
+		|	|_API
+		|	|	|_RestApiConfig.java
+		|	|	|...
+		|_src/main/resources
+		|	|	|...
 
-* **src/test/resources/features** - all the cucumber features files (files .feature ext) goes here.
-* **src/test/java/userStepDefinition** - you can define step defintion under this package for your feature steps.
-* **src/test/java/env** - this package contains cucumber runner (RunCukeTest.java) where you can configure your glue code location (step defintions), define test result output format.(html, json, xml). Hooks where you can configure all before and after test settings Hooks.java, DriverUtil.java contains code for intializing driver instances for respective driver.
-* **src/main/java/platformConfigs** - If you want to run your test on saucelab and browserstack platforms, you need to add its configuration such as username, access key here.
-* **src/main/java/browserConfig** - When you run your test on remote browser/platform you have to provide capabilities and platform information here.
-* **src/main/java/appUnderTest** - If you are testing mobile based application you can keep your app build here.
+* **src/test/resources/features** - All the cucumber features files (files .feature ext) goes here.
+
+
+* **src/test/java/userStepDefinition** - We can define step defintion under this package for our feature steps.
+
 
 What is Cucumber Feature File?
 -----------------------------
@@ -128,24 +148,27 @@ Execution Flow:
 Running test On remote browser/platform
 ---------------------------------------
 
-To run test on saucelab, browserstack or any other remote browser you need to create browser config file under src/main/java/browserConfig
+To run test on Headspin, browserstack or any other remote Platform you need to create browser config file methodd in  /src/test/java/Driver/DesiredCapability.java.
 
-To run on saucelab create config file with name preceding with saucelab
-- saucelab_windows_chrome.properties
-- saucelab_mac_firefox.properties
+In that method we need to add all the capabilites of the test and Locator files using Page factory.
 
-* `mvn test "-Dconfig=saucelab_mac_firefox"`
+To run on Headspin add the method name in BaseTest.java beforeHookfunction() method
 
-To run on browserstack create config file with name preceding with browserstack
-- browserstack_windows_chrome.properties
-- browserstack_mac_firefox.properties
+* `HeadSpin();`
 
-* `mvn test "-Dconfig=browserstack_mac_firefox"`
+To run on Browserstack add the method name in BaseTest.java beforeHookfunction() method
+
+* `BrowserStack();`
 
 Reference
 ----------
+Appium: https://github.com/appium
+
+Cucumber: https://cucumber.io/
+
+Cucumber Tutorial: http://www.tutorialspoint.com/cucumber/
+
 Appium Desired Capabilities: https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md
 
-https://cucumber.io/
 
-http://www.tutorialspoint.com/cucumber/
+
